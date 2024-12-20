@@ -3,7 +3,7 @@ import classNames from 'classnames'
 
 export type TooltipHostProps = {
     className?: string;
-    children?: ReactElement;
+    children?: ReactElement | string;
     forwardedRef?: RefObject<any>;
 }
 
