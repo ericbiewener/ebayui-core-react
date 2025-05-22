@@ -97,11 +97,13 @@ export const DialogBase: FC<DialogBaseProps<HTMLElement>> = ({
     useEffect(() => {
         let timeout: number
         const handleBackgroundClick = (e: React.MouseEvent<HTMLElement>) => {
+            console.info(`:: drawerBaseEl.current`, drawerBaseEl.current)
             if (drawerBaseEl.current && !drawerBaseEl.current.contains(e.target)) {
                 onBackgroundClick(e)
             }
         }
         if (open && buttonPosition !== 'hidden') {
+            console.info(`::`, 'writing up')
             // On React 18 useEffect hooks runs synchronous instead of asynchronous as React 17 or prior
             // causing the event listener to be attached to the document at the same time that the dialog
             // opens. Adding a timeout so the event is attached after the click event that opened the modal
@@ -113,6 +115,7 @@ export const DialogBase: FC<DialogBaseProps<HTMLElement>> = ({
         return () => {
             clearTimeout(timeout)
             document.removeEventListener('click', handleBackgroundClick as any, false)
+            console.info(`::`, 'removed')
         }
     }, [onBackgroundClick, open])
 
