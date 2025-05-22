@@ -97,7 +97,11 @@ export const DialogBase: FC<DialogBaseProps<HTMLElement>> = ({
     useEffect(() => {
         let timeout: number
         const handleBackgroundClick = (e: React.MouseEvent<HTMLElement>) => {
-            if (drawerBaseEl.current && !drawerBaseEl.current.contains(e.target)) {
+            if (
+                drawerBaseEl.current &&
+                !drawerBaseEl.current.contains(e.target) &&
+                document.contains(e.target as Node)
+            ) {
                 onBackgroundClick(e)
             }
         }
